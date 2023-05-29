@@ -1,0 +1,19 @@
+int firstElementKTime(int arr[], int n, int k)
+    {
+        if(k==1)
+        return arr[0];
+       for(int i=1;i<n;i++)
+       {
+           int c=1;
+           for(int j=i-1;j>=0;j--)
+           {
+               if(arr[i]==arr[j])
+               {
+                   c++;
+               }
+               if(c==k)
+               return arr[i];
+           }
+       }
+       return -1;
+       }
