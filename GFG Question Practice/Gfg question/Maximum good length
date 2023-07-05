@@ -1,0 +1,45 @@
+class Solution {
+public:
+    static int maxGoodLength(std::vector<std::vector<int>>& a) {
+        int n = a.size();
+        int m = a[0].size();
+        int maxLen = 0;
+
+        // Iterate over each element of the matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                // Start with the maximum possible length
+                int len = std::min(n - i, m - j);
+
+                // Check if a square matrix of size 'len' is good
+                while (len > maxLen) {
+                    bool isGood = true;
+
+                    // Check if all elements in the square matrix are greater than or equal to 'len'
+                    for (int r = i; r < i + len; r++) {
+                        for (int c = j; c < j + len; c++) {
+                            if (a[r][c] < len) {
+                                isGood = false;
+                                break;
+                            }
+                        }
+                        if (!isGood) {
+                            break;
+                        }
+                    }
+
+                    // If all elements in the square matrix are greater than or equal to 'len',
+                    // update the maximum good length
+                    if (isGood) {
+                        maxLen = len;
+                    }
+
+                    // Decrease the length to check for smaller square matrices
+                    len--;
+                }
+            }
+        }
+
+        return maxLen;
+    }
+};
