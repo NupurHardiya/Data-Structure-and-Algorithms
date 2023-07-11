@@ -1,0 +1,92 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+#define MAX 1000
+
+// } Driver Code Ends
+class Solution
+{
+    public:
+    /*You are required to complete this method*/
+    int findK(int a[MAX][MAX],int n,int m,int k)
+    {
+ 	    int top =0, left =0,right = m-1, bott = n-1;
+ 	    //right
+         while(top<= bott and left <= right){
+
+             //right traversal
+             for(int i= left ; i<= right ;i++){
+                 k--;
+                 if(k==0){
+                     return a[top][i];
+                 }
+             }
+             top++;
+
+             //bottom traversal
+             for(int i=top;i<=bott;i++){
+                 k--;
+                 if(k==0){
+                     return a[i][right];
+                 }
+             }
+             right--;
+
+              //left traversal
+             if(top <= bott){
+                 for(int i= right ; i>= left;i--){
+                     k--;
+                     if(k==0){
+                         return a[bott][i];
+                     }
+                 }
+                 bott--;
+             }
+
+              //top traversal
+             if(left <= right){
+                 for(int i=bott;i>=top;i--){
+                     k--;
+                     if(k==0){
+                         return a[i][left];
+                     }
+                 }
+                 left++;
+             }
+         }
+         return -1;
+    }
+};
+
+
+
+
+
+//{ Driver Code Starts.
+int main()
+{
+    int T;
+    cin>>T;
+  
+    while(T--)
+    {
+        int n,m;
+        int k=0;
+        //cin>>k;
+        cin>>n>>m>>k;
+        int a[MAX][MAX];
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                cin>>a[i][j];
+            }
+        }
+        Solution ob;
+        cout<<ob.findK(a,n,m,k)<<endl;
+        
+       
+    }
+}
+// } Driver Code Ends
