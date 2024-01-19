@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+       for(int i = 0, j = s.size() - 1; i<j; i++,j--){
+            i = s.find_first_of("aeiouAEIOU", i);
+            j = s.find_last_of("aeiouAEIOU", j);
+            if (i < j) {
+                swap(s[i], s[j]);
+            }
+        }
+        return s;
+    }
+};
+___________________________________________________________________________________________
+class Solution {
+public:
+    string reverseVowels(string s) {
+        vector<int>v;
+         string vowels = "aeiouAEIOU";
+        for(int i=0; i<s.size(); i++){
+            if (find(vowels.begin(), vowels.end(), s[i]) != vowels.end()) {
+                v.push_back(i);
+            }
+        }
+
+        int n = v.size(); 
+        for(int i=0,j=n-1; i<j; i++,j--){
+            swap(s[v[i]], s[v[j]]);
+        }
+        return s;
+    }
+};
